@@ -1,255 +1,329 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Pintar</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CalorieMate - Food Tracker</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff7ee;
+    color: #493d35;
+}
 
-        .kalkulator {
-            width: 100%;
-            max-width: 350px;
-            background: #ffffff;
-            padding: 22px;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px #00000030;
-        }
+header {
+    background: linear-gradient(135deg, #ffb78c, #ff8eaa);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    border-radius: 0 0 30px 30px;
+}
 
-        h2 {
-            text-align: center;
-            color: #764ba2;
-            margin-bottom: 20px;
-        }
+header h1 {
+    font-size: 30px;
+    margin: 0 0 10px;
+}
 
-        .layar {
-            background: #f1f0f7;
-            border-radius: 15px;
-            padding: 20px 12px;
-            margin-bottom: 15px;
-            text-align: right;
-            overflow: hidden;
-        }
+header p {
+    font-size: 14px;
+    line-height: 1.6;
+}
 
-        #riwayat {
-            color: #777;
-            font-size: 14px;
-            min-height: 20px;
-        }
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 18px;
+}
 
-        #hasil {
-            width: 100%;
-            border: none;
-            outline: none;
-            background: transparent;
-            text-align: right;
-            font-size: 32px;
-            color: #333;
-        }
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 17px;
+    box-shadow: 0 5px 20px #c58d6a18;
+}
 
-        .tombol {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
+h2 {
+    color: #df7d66;
+    font-size: 20px;
+    margin-top: 0;
+}
 
-        button {
-            border: none;
-            border-radius: 12px;
-            padding: 17px 0;
-            font-size: 20px;
-            font-weight: bold;
-            background: #f1f0f7;
-            color: #333;
-            cursor: pointer;
-        }
+label {
+    display: block;
+    margin: 13px 0 7px;
+    font-size: 14px;
+    font-weight: bold;
+}
 
-        button:active {
-            transform: scale(0.95);
-        }
+select, input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #f1d7c8;
+    border-radius: 12px;
+    background: #fffaf6;
+    font-size: 15px;
+    color: #493d35;
+}
 
-        .operator {
-            background: #e6dcff;
-            color: #764ba2;
-        }
+button {
+    border: none;
+    border-radius: 12px;
+    padding: 13px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        .hapus {
-            background: #ffdddd;
-            color: #d63031;
-        }
+.tambah {
+    width: 100%;
+    margin-top: 16px;
+    color: white;
+    background: linear-gradient(90deg, #ff9d81, #ff8eaa);
+}
 
-        .sama {
-            background: #764ba2;
-            color: white;
-        }
+.total {
+    text-align: center;
+    background: #fff0e8;
+    padding: 20px;
+    border-radius: 17px;
+}
 
-        .nol {
-            grid-column: span 2;
-        }
+.total .angka {
+    font-size: 36px;
+    color: #df7d66;
+    font-weight: bold;
+}
 
-        .keterangan {
-            text-align: center;
-            color: #777;
-            font-size: 12px;
-            margin-top: 18px;
-        }
-    </style>
+.total p {
+    margin-bottom: 0;
+    font-size: 13px;
+    color: #8f7466;
+}
+
+.daftar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.daftar li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 0;
+    border-bottom: 1px solid #f6e9e0;
+}
+
+.info {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.info small {
+    color: #987e70;
+}
+
+.hapus {
+    color: #c75454;
+    background: #ffe9e5;
+    padding: 9px 12px;
+}
+
+.kosong {
+    color: #9c887d;
+    text-align: center;
+    font-size: 14px;
+    padding: 15px 0;
+}
+
+.reset {
+    width: 100%;
+    margin-top: 14px;
+    background: #f5eee8;
+    color: #755e50;
+}
+
+.catatan {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #8f796b;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #ad8b7a;
+    font-size: 12px;
+}
+</style>
 </head>
 
 <body>
 
-    <div class="kalkulator">
-        <h2>🧮 Kalkulator Pintar</h2>
+<header>
+    <h1>🥗 CalorieMate</h1>
+    <p>Kenali makananmu, pahami gizinya 🍓<br>
+    Catatan makanan sederhana untuk keseharianmu.</p>
+</header>
 
-        <div class="layar">
-            <div id="riwayat">Siap menghitung</div>
-            <input type="text" id="hasil"
-                value="0" readonly>
+<div class="container">
+
+    <div class="card">
+        <h2>🍽️ Tambahkan Makanan</h2>
+
+        <label for="waktu">Waktu makan</label>
+        <select id="waktu">
+            <option>Sarapan</option>
+            <option>Makan siang</option>
+            <option>Makan malam</option>
+            <option>Camilan</option>
+        </select>
+
+        <label for="makanan">Pilih makanan</label>
+        <select id="makanan">
+            <option value="Nasi putih|175">🍚 Nasi putih (100 g)</option>
+            <option value="Telur rebus|78">🥚 Telur rebus (1 butir)</option>
+            <option value="Pisang|105">🍌 Pisang (1 buah sedang)</option>
+            <option value="Ubi rebus|115">🍠 Ubi rebus (100 g)</option>
+            <option value="Tempe|120">🟫 Tempe (50 g)</option>
+            <option value="Tahu|80">⬜ Tahu (100 g)</option>
+            <option value="Dada ayam matang|165">🍗 Dada ayam matang (100 g)</option>
+            <option value="Apel|95">🍎 Apel (1 buah sedang)</option>
+            <option value="Roti tawar|75">🍞 Roti tawar (1 lembar)</option>
+            <option value="Susu|120">🥛 Susu (1 gelas, sekitar 250 ml)</option>
+            <option value="Mie instan|380">🍜 Mi instan (1 bungkus, perkiraan)</option>
+        </select>
+
+        <label for="porsi">Jumlah porsi</label>
+        <input type="number" id="porsi"
+            value="1" min="0.25" max="20" step="0.25">
+
+        <button class="tambah" onclick="tambahMakanan()">
+            + Tambahkan ke Catatan
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>📊 Ringkasan Makanan</h2>
+        <div class="total">
+            <div class="angka" id="total">0</div>
+            <div>kkal tercatat</div>
+            <p>Perkiraan dari makanan yang kamu masukkan hari ini.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>🧺 Makanan yang Dicatat</h2>
+        <div id="daftar">
+            <div class="kosong">
+                Belum ada makanan. Yuk, tambahkan makananmu 🍓
+            </div>
         </div>
 
-        <div class="tombol">
-            <button class="hapus" onclick="reset()">AC</button>
-            <button class="hapus" onclick="hapusSatu()">DEL</button>
-            <button class="operator" onclick="masuk('%')">%</button>
-            <button class="operator" onclick="masuk('/')">÷</button>
+        <button class="reset" onclick="hapusSemua()">
+            Hapus Semua Catatan
+        </button>
+    </div>
 
-            <button onclick="masuk('7')">7</button>
-            <button onclick="masuk('8')">8</button>
-            <button onclick="masuk('9')">9</button>
-            <button class="operator" onclick="masuk('*')">×</button>
-
-            <button onclick="masuk('4')">4</button>
-            <button onclick="masuk('5')">5</button>
-            <button onclick="masuk('6')">6</button>
-            <button class="operator" onclick="masuk('-')">−</button>
-
-            <button onclick="masuk('1')">1</button>
-            <button onclick="masuk('2')">2</button>
-            <button onclick="masuk('3')">3</button>
-            <button class="operator" onclick="masuk('+')">+</button>
-
-            <button class="nol" onclick="masuk('0')">0</button>
-            <button onclick="masuk('.')">.</button>
-            <button class="sama" onclick="hitung()">=</button>
-        </div>
-
-        <p class="keterangan">
-            Kalkulator Pintar • Mudah dan Praktis
+    <div class="card">
+        <h2>💗 Catatan Gizi</h2>
+        <p class="catatan">
+            • Nilai kalori merupakan perkiraan dan bisa berbeda
+            menurut ukuran porsi serta cara memasak.<br>
+            • Minyak, saus, gula, dan bahan tambahan juga
+            dapat menambah energi makanan.<br>
+            • Setiap orang membutuhkan energi yang berbeda.
+            Angka di aplikasi ini bukan target atau batas makan.<br>
+            • Makanlah secara teratur dan beragam agar tubuh
+            mendapat energi serta zat gizi yang dibutuhkan.
         </p>
     </div>
 
-    <script>
-        let ekspresi = "";
-        let selesai = false;
+</div>
 
-        function tampilkan() {
-            document.getElementById("hasil").value =
-                ekspresi || "0";
-        }
+<footer>
+    Made with 🧡 | CalorieMate
+</footer>
 
-        function masuk(nilai) {
-            const operator = ["+", "-", "*", "/", "%"];
+<script>
+let catatan = [];
 
-            if (selesai) {
-                if (operator.includes(nilai)) {
-                    selesai = false;
-                } else {
-                    ekspresi = "";
-                    selesai = false;
-                }
-            }
+function tambahMakanan() {
+    const pilihan = document.getElementById("makanan").value;
+    const bagian = pilihan.split("|");
+    const nama = bagian[0];
+    const kalori = Number(bagian[1]);
+    const porsi = Number(document.getElementById("porsi").value);
+    const waktu = document.getElementById("waktu").value;
 
-            if (operator.includes(nilai)) {
-                if (ekspresi === "" && nilai !== "-") return;
+    if (!Number.isFinite(porsi) || porsi <= 0 || porsi > 20) {
+        alert("Masukkan jumlah porsi yang valid ya!");
+        return;
+    }
 
-                if (operator.includes(ekspresi.slice(-1))) {
-                    ekspresi = ekspresi.slice(0, -1);
-                }
-            }
+    catatan.push({
+        nama: nama,
+        kalori: kalori * porsi,
+        porsi: porsi,
+        waktu: waktu
+    });
 
-            if (nilai === ".") {
-                const bagian = ekspresi.split(/[+\-*/%]/).pop();
-                if (bagian.includes(".")) return;
-            }
+    tampilkanCatatan();
+}
 
-            ekspresi += nilai;
-            tampilkan();
-        }
+function tampilkanCatatan() {
+    let total = 0;
+    let html = "";
 
-        function hitung() {
-            if (!ekspresi) return;
+    if (catatan.length === 0) {
+        html = '<div class="kosong">Belum ada makanan. Yuk, tambahkan makananmu 🍓</div>';
+    }
 
-            try {
-                if (!/^[0-9+\-*/%.() ]+$/.test(ekspresi)) {
-                    throw new Error("Ekspresi tidak valid");
-                }
+    catatan.forEach(function(item, index) {
+        total += item.kalori;
 
-                if (/[+\-*/%.]$/.test(ekspresi)) {
-                    throw new Error("Ekspresi tidak lengkap");
-                }
+        html += `
+            <li>
+                <div class="info">
+                    <strong>${item.nama}</strong><br>
+                    <small>${item.waktu} · ${item.porsi} porsi</small><br>
+                    ${Math.round(item.kalori)} kkal
+                </div>
+                <button class="hapus"
+                    onclick="hapusMakanan(${index})">Hapus</button>
+            </li>
+        `;
+    });
 
-                const rumus = ekspresi;
-                const hasilHitung = Function(
-                    '"use strict"; return (' + rumus + ')'
-                )();
+    document.getElementById("total").textContent =
+        Math.round(total).toLocaleString("id-ID");
 
-                if (!Number.isFinite(hasilHitung)) {
-                    throw new Error("Hasil tidak valid");
-                }
+    document.getElementById("daftar").innerHTML =
+        catatan.length ? '<ul class="daftar">' + html + '</ul>' : html;
+}
 
-                document.getElementById("riwayat").textContent =
-                    rumus.replace(/\*/g, "×")
-                         .replace(/\//g, "÷") + " =";
+function hapusMakanan(index) {
+    catatan.splice(index, 1);
+    tampilkanCatatan();
+}
 
-                ekspresi = String(
-                    Number(hasilHitung.toPrecision(12))
-                );
+function hapusSemua() {
+    if (catatan.length === 0) return;
 
-                tampilkan();
-                selesai = true;
-
-            } catch (error) {
-                document.getElementById("riwayat").textContent =
-                    "Perhitungan tidak valid";
-                ekspresi = "";
-                tampilkan();
-                selesai = false;
-            }
-        }
-
-        function reset() {
-            ekspresi = "";
-            selesai = false;
-            document.getElementById("riwayat").textContent =
-                "Siap menghitung";
-            tampilkan();
-        }
-
-        function hapusSatu() {
-            if (selesai) {
-                reset();
-                return;
-            }
-
-            ekspresi = ekspresi.slice(0, -1);
-            tampilkan();
-        }
-    </script>
+    if (confirm("Hapus semua catatan makanan?")) {
+        catatan = [];
+        tampilkanCatatan();
+    }
+}
+</script>
 
 </body>
-</html>
+    </html>
